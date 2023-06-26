@@ -54,6 +54,8 @@
                             <option value="30">30</option>
                             <option value="60">60</option>
                             <option value="90">90</option>
+                            <option value="365">365</option>
+                            <option value="all-time">all-time records</option>
 
                         </select>
                         <span class="text-danger">
@@ -76,6 +78,30 @@
             analytics.
         </h4>
         @else
+
+        <!------------- Card analytics -------------->
+        <div class="container m-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card border">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">{{$days}} days Cash-In</h4>
+                            <h4 style="font-weight:bold" class="text-danger">{{$cashin[0]->cash}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary">{{$days}} days Cash-Out</h4>
+                            <h4 style="font-weight:bold" class="text-danger">{{$cashout[0]->cash}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-------------- Graph ------------------->
         <script type="text/javascript">
         google.charts.load('current', {
             'packages': ['corechart']
@@ -84,7 +110,7 @@
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Date', 'Check-In Amount', "Check-Out Amount", "Gross Amount"],
+                ['Date', 'Cash-In Amount', "Cash-Out Amount", "Gross Amount"],
                 <?php echo $fifteendaysChart?>
             ]);
 
@@ -106,7 +132,14 @@
         }
         </script>
         <div id="chart_div" style="width: 100%; height: 70vh;"></div>
+
+
         @endif
+
+
+
+
+
 
 
 
